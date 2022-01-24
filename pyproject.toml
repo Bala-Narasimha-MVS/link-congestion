@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "link-congestion"
+version = "0.1.0"
+description = ""
+authors = ["Bala-Narasimha <bala.narasimha@itspe.co.in>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+mysql-connector-python = "^8.0.28"
+grpcio = "^1.43.0"
+psycopg2-binary = "2.8.6"
+Cython = "^0.29.26"
+schedule = "^1.1.0"
+pandas = "^1.4.0"
+
+[tool.poetry.scripts]
+link-congestion="link_congestion.link_tp_main:test"
+linker-csv="link_congestion.Helpers.linker_main:run_linker_main"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.build]
+script="build.py"
+generate-setup-file=false
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
