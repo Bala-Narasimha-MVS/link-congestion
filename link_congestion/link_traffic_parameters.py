@@ -354,6 +354,8 @@ def get_link_tt(linkAttribDict, nMin, def_sat, dbCreds):
                 green_share = linkAttribDict[link]["greenShare"]
             elif linkOrder in cur_plan_dict:
                 green_share = round(cur_plan_dict[linkOrder][1]/cycTm, 2)
+            elif green_share == 0:
+                green_share = 0.20
             else:
                 green_share = 0.20
         else:
@@ -639,7 +641,7 @@ def insert(linkTTdict, table, dbcreds, reality):
             except:
                 myDict["KPI"] = 0.5
 
-            sql = 'INSERT INTO utmc_transport_link_data_dynamic ( "SystemCodeNumber","CurrentFlow","AverageSpeed","LinkTravelTime","Reality","CongestionPercent","Colour","OccupancyPercent", "DegreeOfSaturation ) VALUES ( %s,%s,%s,%s,%s,%s,%s,%s,%s );'
+            sql = 'INSERT INTO utmc_transport_link_data_dynamic ( "SystemCodeNumber","CurrentFlow","AverageSpeed","LinkTravelTime","Reality","CongestionPercent","Colour","OccupancyPercent", "DegreeOfSaturation" ) VALUES ( %s,%s,%s,%s,%s,%s,%s,%s,%s );'
             atuple = (myDict["SystemCodeNumber"], myDict["CurrentFlow"], myDict["AverageSpeed"], myDict["LinkTravelTime"],
                       myDict["Reality"], myDict["CongestionPercent"], myDict["KPI"], myDict["OccupancyPercent"],myDict['DegreeOfSaturation'])
             
