@@ -5,6 +5,7 @@ from link_congestion import link_traffic_parameters as ltp
 from datetime import datetime, timedelta
 import time
 import schedule
+import sys
 
 #from itspelogger import Logger
 # logger=Logger("LTP-MAIN")
@@ -30,7 +31,7 @@ def timeit(func):
 
 
 @timeit
-def ltp_main():
+def ltp_main(configfile):
 
     print("Started At {} ".format(
         datetime.now()))
@@ -137,7 +138,7 @@ def scheduler():
 
     nMin = int(config["RUN"]["FREQUENCY"])
 
-    schedule.every(nMin).minutes.do(ltp_main)
+    schedule.every(nMin).minutes.do(ltp_main, configfile=configfile)
 
     while True:
         schedule.run_pending()
@@ -148,4 +149,4 @@ def test():
     pass
 
 if __name__ == "__main__":
-    ltp_main()
+    ltp_main(sys.argv[1])
